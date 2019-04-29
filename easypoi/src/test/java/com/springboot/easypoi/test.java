@@ -4,6 +4,7 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
+import com.springboot.easypoi.common.util.CustomExcelUtil;
 import com.springboot.easypoi.entity.*;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -60,22 +61,22 @@ public class test {
         ImportParams importParams=new ImportParams();
         //如果有标题必须要配置否则会报错
         importParams.setTitleRows(1);
-        List<AliPayExceptionOrder> list = readerAndReturnByAP("D:\\IDE\\Github\\springBoot\\springBoot\\easypoi\\3月份测试明细.xls",importParams, AliPayExceptionOrder.class);
+        List<AliPayExceptionOrder> list = readerAndReturnByAP("E:\\springBoot\\easypoi\\3月份测试明细.xls",importParams, AliPayExceptionOrder.class);
 
-        for (AliPayExceptionOrder aliPayExceptionOrder : list) {
-            System.out.println("账务流水号"+aliPayExceptionOrder.getFinancialSerialNum());
-            System.out.println("业务流水号"+aliPayExceptionOrder.getBusinessSerialNum());
-            System.out.println("商户订单号"+aliPayExceptionOrder.getMerchantOrderNum());
-            System.out.println("商品名称"+aliPayExceptionOrder.getProductName());
-            System.out.println("发生时间"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(aliPayExceptionOrder.getOccurrenceTime()));
-            System.out.println("对方账号"+aliPayExceptionOrder.getAdverseAccount());
-            System.out.println("收入金额（+元）"+aliPayExceptionOrder.getIncome());
-            System.out.println("支出金额（-元）"+aliPayExceptionOrder.getAmountPaid());
-            System.out.println("账户余额（元）"+aliPayExceptionOrder.getAccountBalance());
-            System.out.println("交易渠道"+aliPayExceptionOrder.getTransaction());
+      // for (AliPayExceptionOrder aliPayExceptionOrder : list) {
+      //     System.out.println("账务流水号"+aliPayExceptionOrder.getFinancialSerialNum());
+      //     System.out.println("业务流水号"+aliPayExceptionOrder.getBusinessSerialNum());
+      //     System.out.println("商户订单号"+aliPayExceptionOrder.getMerchantOrderNum());
+      //     System.out.println("商品名称"+aliPayExceptionOrder.getProductName());
+      //     System.out.println("发生时间"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(aliPayExceptionOrder.getOccurrenceTime()));
+      //     System.out.println("对方账号"+aliPayExceptionOrder.getAdverseAccount());
+      //     System.out.println("收入金额（+元）"+aliPayExceptionOrder.getIncome());
+      //     System.out.println("支出金额（-元）"+aliPayExceptionOrder.getAmountPaid());
+      //     System.out.println("账户余额（元）"+aliPayExceptionOrder.getAccountBalance());
+      //     System.out.println("交易渠道"+aliPayExceptionOrder.getTransaction());
 
-            System.out.println("------------------------------");
-        }
+      //     System.out.println("------------------------------");
+      // }
 
 
         //导出参数设置
@@ -243,6 +244,7 @@ public class test {
         Workbook workbook=null;
         FileOutputStream fos=null;
         try{
+            //导出第1页
             ImportParams importParams=new ImportParams();
             //如果有标题必须要配置否则会报错
             importParams.setTitleRows(1);
@@ -263,7 +265,7 @@ public class test {
             //sheet中要填充的数据
             AliPayMap.put("data",AliPayList);
 
-
+            //导出第2页
             ImportParams importParams2=new ImportParams();
             //如果有标题必须要配置否则会报错
             importParams2.setTitleRows(0);
@@ -281,10 +283,112 @@ public class test {
             map2.put("entity",ConvergeGatheringTest.class);
             map2.put("data",list);
 
-            // 将sheet1、sheet2、sheet3使用得map进行包装
+
+            //导出第3页
+            ImportParams importParams3=new ImportParams();
+            //如果有标题必须要配置否则会报错
+            importParams3.setTitleRows(1);
+            //读取指定的sheet,比如要读取上传得第二个sheet 那么需要把startSheetIndex = 1 就可以了
+            importParams3.setStartSheetIndex(2);
+            List<ConvergeExceptionOrder> list3 = readerAndReturnByAP("E:\\springBoot\\easypoi\\3月份测试明细.xls",importParams3, ConvergeExceptionOrder.class);
+
+
+            //创建参数对象(用来设定excel的sheet的内容信息)
+            ExportParams exportParams3=new ExportParams();
+            //设置sheet名字
+            exportParams3.setSheetName("汇聚异常订单");
+            exportParams3.setTitle("3月份汇聚异常订单");
+            //创建sheet3使用的map
+            Map<String,Object> map3=new HashMap<>();
+            //title的参数为ExportParams类型,目前仅仅在AliPayParam中设置了sheetName
+            map3.put("title",exportParams3);
+            //模板导出对应的实体类型
+            map3.put("entity",ConvergeExceptionOrder.class);
+            //sheet中要填充的数据
+            map3.put("data",list3);
+
+
+
+            //导出第4页
+            ImportParams importParams4=new ImportParams();
+            //如果有标题必须要配置否则会报错
+            importParams4.setTitleRows(0);
+            //读取指定的sheet,比如要读取上传得第二个sheet 那么需要把startSheetIndex = 1 就可以了
+            importParams4.setStartSheetIndex(3);
+            List<ConvergeRefundTest> list4 = readerAndReturnByAP("E:\\springBoot\\easypoi\\3月份测试明细.xls",importParams4, ConvergeRefundTest.class);
+
+
+            //创建参数对象(用来设定excel的sheet的内容信息)
+            ExportParams exportParams4=new ExportParams();
+            //设置sheet名字
+            exportParams4.setSheetName("汇聚退款测试");
+            //创建sheet3使用的map
+            Map<String,Object> map4=new HashMap<>();
+            //title的参数为ExportParams类型,目前仅仅在AliPayParam中设置了sheetName
+            map4.put("title",exportParams4);
+            //模板导出对应的实体类型
+            map4.put("entity",ConvergeRefundTest.class);
+            //sheet中要填充的数据
+            map4.put("data",list4);
+
+
+
+
+            //导出第5页
+            ImportParams importParams5=new ImportParams();
+            //如果有标题必须要配置否则会报错
+            importParams5.setTitleRows(1);
+            //读取指定的sheet,比如要读取上传得第二个sheet 那么需要把startSheetIndex = 1 就可以了
+            importParams5.setStartSheetIndex(4);
+            List<AliPayRefundTest> list5 = readerAndReturnByAP("E:\\springBoot\\easypoi\\3月份测试明细.xls",importParams5, AliPayRefundTest.class);
+
+
+            //创建参数对象(用来设定excel的sheet的内容信息)
+            ExportParams exportParams5=new ExportParams();
+            //设置sheet名字
+            exportParams5.setSheetName("支付宝退款测试");
+            exportParams5.setTitle("3月份支付宝退款测试明细");
+            //创建sheet3使用的map
+            Map<String,Object> map5=new HashMap<>();
+            //title的参数为ExportParams类型,目前仅仅在AliPayParam中设置了sheetName
+            map5.put("title",exportParams5);
+            //模板导出对应的实体类型
+            map5.put("entity",AliPayRefundTest.class);
+            //sheet中要填充的数据
+            map5.put("data",list5);
+
+            //导出第6页
+            ImportParams importParams6=new ImportParams();
+            //如果有标题必须要配置否则会报错
+            importParams6.setTitleRows(1);
+            //读取指定的sheet,比如要读取上传得第二个sheet 那么需要把startSheetIndex = 1 就可以了
+            importParams6.setStartSheetIndex(5);
+            List<AliPayOnLineTest> list6 = readerAndReturnByAP("E:\\springBoot\\easypoi\\3月份测试明细.xls",importParams6, AliPayOnLineTest.class);
+
+
+            //创建参数对象(用来设定excel的sheet的内容信息)
+            ExportParams exportParams6=new ExportParams();
+            //设置sheet名字
+            exportParams6.setSheetName("支付宝在线测试");
+            exportParams6.setTitle("3月份支付宝在线测试明细");
+            //创建sheet3使用的map
+            Map<String,Object> map6=new HashMap<>();
+            //title的参数为ExportParams类型,目前仅仅在AliPayParam中设置了sheetName
+            map6.put("title",exportParams6);
+            //模板导出对应的实体类型
+            map6.put("entity",AliPayOnLineTest.class);
+            //sheet中要填充的数据
+            map6.put("data",list6);
+
+
+            // 将sheet1、sheet2、sheet3...使用得map进行包装
             List<Map<String, Object>> sheetsList = new ArrayList<>();
             sheetsList.add(AliPayMap);
             sheetsList.add(map2);
+            sheetsList.add(map3);
+            sheetsList.add(map4);
+            sheetsList.add(map5);
+            sheetsList.add(map6);
 
             //执行方法
             workbook = ExcelExportUtil.exportExcel(sheetsList, ExcelType.HSSF);
@@ -292,7 +396,7 @@ public class test {
 
             fos=new FileOutputStream("整合多个sheets表.xls");
             workbook.write(fos);
-            System.out.println("导入数据完成");
+            System.out.println("导出数据完成");
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -303,6 +407,28 @@ public class test {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Test
+    public void sheets2() throws IOException {
+        CustomExcels customExcels = CustomExcelUtil.importCustomExcels("E:\\springBoot\\easypoi\\3月份测试明细.xls",new CustomImportParamList());
+        //导出支付宝异常订单
+        ExportParams exportParams=new ExportParams();
+        exportParams.setTitle("三月份支付宝异常订单");
+        exportParams.setSheetName("支付宝异常订单");
+
+        try {
+            for (AliPayExceptionOrder aliPayExceptionOrder : customExcels.getAliPayExceptionOrderList()) {
+                aliPayExceptionOrder.setIsExist("不在了");
+                aliPayExceptionOrder.setIsEqual("无");
+            }
+
+            exportExcel(customExcels.getAliPayExceptionOrderList(),"aliPayOrder",AliPayExceptionOrder.class,exportParams);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 }

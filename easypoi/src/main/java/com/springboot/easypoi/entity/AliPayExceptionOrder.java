@@ -45,6 +45,14 @@ public class AliPayExceptionOrder {
     @Excel(name = "交易渠道")
     private String transaction;
 
+    @Excel(name = "数据库中是否存在")
+    private String isExist;
+
+    @Excel(name = "和之前的数据是否相同")
+    private String isEqual;
+
+
+
     public String getFinancialSerialNum() {
         return financialSerialNum;
     }
@@ -123,5 +131,21 @@ public class AliPayExceptionOrder {
 
     public void setTransaction(String transaction) {
         this.transaction = transaction;
+    }
+
+    public String getIsExist() {
+        return isExist;
+    }
+
+    public void setIsExist(String isExist) {
+        this.isExist = isExist;
+    }
+
+    public String getIsEqual() {
+        return isEqual;
+    }
+
+    public void setIsEqual(String isEqual) {
+        this.isEqual = isEqual;
     }
 }
