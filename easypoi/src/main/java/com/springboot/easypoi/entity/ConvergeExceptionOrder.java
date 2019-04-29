@@ -1,15 +1,16 @@
 package com.springboot.easypoi.entity;
 
+
 import cn.afterturn.easypoi.excel.annotation.Excel;
 
 import java.util.Date;
 
 /**
- * 汇聚收款测试pojo
- * 2019年4月26日16:35:03
+ * 汇聚异常订单
+ * 时间
  * 周洲
  */
-public class ConvergeGatheringTest {
+public class ConvergeExceptionOrder {
 
     @Excel(name = "商户编号",width = 25)
     private String merchantNo;
@@ -43,9 +44,6 @@ public class ConvergeGatheringTest {
 
     @Excel(name = "手续费")
     private Double orderNum;
-
-    @Excel(name = "产品名称")
-    private String productName;
 
     public String getMerchantNo() {
         return merchantNo;
@@ -133,13 +131,5 @@ public class ConvergeGatheringTest {
 
     public void setOrderNum(Double orderNum) {
         this.orderNum = orderNum;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
     }
 }

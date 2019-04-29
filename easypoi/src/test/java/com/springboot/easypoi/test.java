@@ -5,6 +5,7 @@ import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.springboot.easypoi.entity.AliPayExceptionOrder;
+import com.springboot.easypoi.entity.ConvergeExceptionOrder;
 import com.springboot.easypoi.entity.ConvergeGatheringTest;
 import com.springboot.easypoi.entity.User;
 import org.apache.commons.lang3.time.DateUtils;
@@ -118,6 +119,35 @@ public class test {
         }
     }
 
+    @Test
+    public void readerPOJO3(){
+        ImportParams importParams=new ImportParams();
+        //如果有标题必须要配置否则会报错
+        importParams.setTitleRows(1);
+        //读取指定的sheet,比如要读取上传得第二个sheet 那么需要把startSheetIndex = 1 就可以了
+        importParams.setStartSheetIndex(2);
+        List<ConvergeExceptionOrder> list = readerAndReturnByAP("E:\\springBoot\\easypoi\\3月份测试明细.xls",importParams, ConvergeExceptionOrder.class);
+
+        int count=1;
+
+        for (ConvergeExceptionOrder convergeExceptionOrder : list) {
+            System.out.println("商户编号"+convergeExceptionOrder.getMerchantNo());
+            System.out.println("商户名称"+convergeExceptionOrder.getMerchantName());
+            System.out.println("创建时间"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(convergeExceptionOrder.getCreateTime()));
+            System.out.println("支付时间(年月日)"+new SimpleDateFormat("yyyy-MM-dd").format(convergeExceptionOrder.getPayTimeYMD()));
+            System.out.println("支付时间(时分秒)"+new SimpleDateFormat("HH:mm:ss").format(convergeExceptionOrder.getPayTimeHMS()));
+            System.out.println("商户订单号"+convergeExceptionOrder.getMerchantOrderNum());
+            System.out.println("支付流水号"+convergeExceptionOrder.getPaySerialNum());
+            System.out.println("支付方式"+convergeExceptionOrder.getPayType());
+            System.out.println("订单状态"+convergeExceptionOrder.getOrderStatus());
+            System.out.println("订单金额"+convergeExceptionOrder.getOrderMoney());
+            System.out.println("手续费"+convergeExceptionOrder.getOrderNum());
+
+            System.err.println("这是第"+count+"个");
+            count++;
+        }
+    }
+
 
     @Test
     public void sheets(){
@@ -127,7 +157,7 @@ public class test {
             ImportParams importParams=new ImportParams();
             //如果有标题必须要配置否则会报错
             importParams.setTitleRows(1);
-            List<AliPayExceptionOrder> AliPayList = readerAndReturnByAP("D:\\IDE\\Github\\springBoot\\springBoot\\easypoi\\3月份测试明细.xls",importParams, AliPayExceptionOrder.class);
+            List<AliPayExceptionOrder> AliPayList = readerAndReturnByAP("E:\\springBoot\\easypoi\\3月份测试明细.xls",importParams, AliPayExceptionOrder.class);
 
 
             //创建参数对象(用来设定excel的sheet的内容信息)
@@ -150,7 +180,7 @@ public class test {
             importParams2.setTitleRows(0);
             //读取指定的sheet,比如要读取上传得第二个sheet 那么需要把startSheetIndex = 1 就可以了
             importParams2.setStartSheetIndex(1);
-            List<ConvergeGatheringTest> list = readerAndReturnByAP("D:\\IDE\\Github\\springBoot\\springBoot\\easypoi\\3月份测试明细.xls",importParams2, ConvergeGatheringTest.class);
+            List<ConvergeGatheringTest> list = readerAndReturnByAP("E:\\springBoot\\easypoi\\3月份测试明细.xls",importParams2, ConvergeGatheringTest.class);
 
             //创建参数对象(用来设定excel的sheet的内容信息)
             ExportParams exportParams=new ExportParams();

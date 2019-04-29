@@ -4,24 +4,33 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
 
 import java.util.Date;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+
+import java.util.Date;
+
+/**
+ * 对应支付宝异常订单
+ * 2019年4月26日16:35:20
+ * 周洲
+ */
 public class AliPayExceptionOrder {
 
-    @Excel(name = "账务流水号")
+    @Excel(name = "账务流水号",width = 30)
     private String financialSerialNum;
 
-    @Excel(name = "业务流水号")
+    @Excel(name = "业务流水号",width = 50)
     private String businessSerialNum;
 
-    @Excel(name = "商户订单号")
+    @Excel(name = "商户订单号",width = 30)
     private String merchantOrderNum;
 
-    @Excel(name = "商品名称")
+    @Excel(name = "商品名称",width = 30)
     private String productName;
 
-    @Excel(name = "发生时间",importFormat = "yyyy-MM-dd HH:mm:ss",exportFormat = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "发生时间",importFormat = "yyyy-MM-dd HH:mm:ss",exportFormat = "yyyy-MM-dd HH:mm:ss",width = 20)
     private Date occurrenceTime;
 
-    @Excel(name = "对方账号")
+    @Excel(name = "对方账号",width = 20)
     private String adverseAccount;
 
     @Excel(name = "收入金额（+元）")
