@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -117,19 +118,54 @@ public class CustomExcelUtil<T> extends ExcelUtiles {
      * @param fileName 导出的文件名前缀不包含.xls
      * 2019年4月29日14:51:19
      */
-    public static void exportCustomExcels(CustomExcels customExcels,String fileName){
+    public static void exportCustomExcels(CustomExcels customExcels,String fileName,CustomExportParamList customExportParamList){
         Workbook workbook=null;
         FileOutputStream fos=null;
         try{
+            //导出第1页AliPayExceptionOrder(支付宝异常订单)
+            Map<String,Object>map1=new HashMap<>();
+            map1.put("title",customExportParamList.getAliPayExceptionOrderEP());
+            map1.put("entity",AliPayExceptionOrder.class);
+            map1.put("data",customExcels.getAliPayExceptionOrderList());
+
+            //导出第2页ConvergeGatheringTest(汇聚收款测试)
+            Map<String,Object>map2=new HashMap<>();
+            map2.put("title",customExportParamList.getConvergeGatheringTestEP());
+            map2.put("entity",ConvergeGatheringTest.class);
+            map2.put("data",customExcels.getConvergeGatheringTestList());
+
+            //导出第3页ConvergeExceptionOrder(汇聚异常订单)
+            Map<String,Object>map3=new HashMap<>();
+            map3.put("title",customExportParamList.getConvergeExceptionOrderEP());
+            map3.put("entity",ConvergeExceptionOrder.class);
+            map3.put("data",customExcels.getConvergeExceptionOrderList());
+
+            //导出第4页ConvergeRefundTest(汇聚退款测试)
+            Map<String,Object>map4=new HashMap<>();
+            map4.put("title",customExportParamList.getConvergeRefundTestEP());
+            map4.put("entity",ConvergeRefundTest.class);
+            map4.put("data",customExcels.getConvergeRefundTestList());
+
+            //导出第5页AliPayRefundTest(支付宝退款测试)
+            Map<String,Object>map5=new HashMap<>();
+            map5.put("title",customExportParamList.getAliPayRefundTestEP());
+            map5.put("entity",AliPayRefundTest.class);
+            map5.put("data",customExcels.getAliPayRefundTestList());
+
+            //导出第6页AliPayOnLineTest(支付宝在线测试)
+            Map<String,Object>map6=new HashMap<>();
+            map6.put("title",customExportParamList.getAliPayOnLineTestEP());
+            map6.put("entity",AliPayOnLineTest.class);
+            map6.put("data",customExcels.getAliPayOnLineTestList());
 
             // 将sheet1、sheet2、sheet3...使用得map进行包装
             List<Map<String, Object>> sheetsList = new ArrayList<>();
-          //  sheetsList.add(AliPayMap);
-          //  sheetsList.add(map2);
-          //  sheetsList.add(map3);
-          //  sheetsList.add(map4);
-          //  sheetsList.add(map5);
-          //  sheetsList.add(map6);
+            sheetsList.add(map1);
+            sheetsList.add(map2);
+            sheetsList.add(map3);
+            sheetsList.add(map4);
+            sheetsList.add(map5);
+            sheetsList.add(map6);
 
             //执行方法
             workbook = ExcelExportUtil.exportExcel(sheetsList, ExcelType.HSSF);
@@ -149,6 +185,12 @@ public class CustomExcelUtil<T> extends ExcelUtiles {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        CustomExcels customExcels = importCustomExcels("E:\\springBoot\\easypoi\\3月份测试明细.xls", new CustomImportParamList());
+
+        exportCustomExcels(customExcels,"excel2",new CustomExportParamList());
     }
 
 }

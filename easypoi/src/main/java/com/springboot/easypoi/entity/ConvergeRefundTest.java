@@ -5,7 +5,7 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
 import java.util.Date;
 
 /**
- * 汇聚收款测试pojo
+ * 汇聚退款测试pojo
  *2019年4月29日09:17:51
  * 周洲
  */
