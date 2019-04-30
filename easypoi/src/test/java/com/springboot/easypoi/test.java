@@ -88,13 +88,13 @@ public class test {
     }
 
     @Test
-    public void readerPOJO2(){
+    public void readerPOJO2() throws IOException {
         ImportParams importParams=new ImportParams();
         //如果有标题必须要配置否则会报错
         importParams.setTitleRows(0);
         //读取指定的sheet,比如要读取上传得第二个sheet 那么需要把startSheetIndex = 1 就可以了
         importParams.setStartSheetIndex(1);
-        List<ConvergeGatheringTest> list = readerAndReturnByAP("D:\\IDE\\Github\\springBoot\\springBoot\\easypoi\\3月份测试明细.xls",importParams, ConvergeGatheringTest.class);
+        List<ConvergeGatheringTest> list = readerAndReturnByAP("E:\\springBoot\\easypoi\\3月份测试明细.xls",importParams, ConvergeGatheringTest.class);
 
         int count=1;
 
@@ -115,6 +115,12 @@ public class test {
             System.out.println("这是第"+count+"个");
             count++;
         }
+
+        //导出参数设置
+        ExportParams exportParams=new ExportParams();
+        exportParams.setSheetName("汇聚收款测试");
+        //导出对应的list,并配置参数
+        exportExcel(list,"convergeGatheringTest",ConvergeGatheringTest.class,exportParams);
     }
 
     @Test
@@ -153,7 +159,7 @@ public class test {
         importParams.setTitleRows(0);
         //读取指定的sheet,比如要读取上传得第二个sheet 那么需要把startSheetIndex = 1 就可以了
         importParams.setStartSheetIndex(3);
-        List<ConvergeRefundTest> list = readerAndReturnByAP("E:\\springBoot\\easypoi\\3月份测试明细.xls",importParams, ConvergeRefundTest.class);
+        List<ConvergeRefundTest> list = readerAndReturnByAP("3月份测试明细.xls",importParams, ConvergeRefundTest.class);
 
         int count=1;
 

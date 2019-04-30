@@ -20,10 +20,10 @@ public class ConvergeGatheringTest {
     @Excel(name = "创建时间",importFormat = "yyyy-MM-dd HH:mm:ss",exportFormat = "yyyy-MM-dd HH:mm:ss",width = 20)
     private Date createTime;
 
-    @Excel(name = "支付时间1",importFormat = "yyyy-MM-dd",exportFormat = "yyyy-MM-dd ")
+    @Excel(name = "支付时间YMD",importFormat = "yyyy-MM-dd",exportFormat = "yyyy-MM-dd ")
     private Date payTimeYMD;
 
-    @Excel(name = "支付时间2",importFormat = "HH:mm:ss",exportFormat = "HH:mm:ss")
+    @Excel(name = "支付时间HMS",importFormat = "HH:mm:ss",exportFormat = "HH:mm:ss")
     private Date payTimeHMS;
 
     @Excel(name = "商户订单号",width = 20)
@@ -46,6 +46,12 @@ public class ConvergeGatheringTest {
 
     @Excel(name = "产品名称")
     private String productName;
+
+    @Excel(name = "数据库中是否存在")
+    private String isExist;
+
+    @Excel(name = "和之前的数据是否相同")
+    private String isEqual;
 
     public String getMerchantNo() {
         return merchantNo;
@@ -141,5 +147,21 @@ public class ConvergeGatheringTest {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public String getIsExist() {
+        return isExist;
+    }
+
+    public void setIsExist(String isExist) {
+        this.isExist = isExist;
+    }
+
+    public String getIsEqual() {
+        return isEqual;
+    }
+
+    public void setIsEqual(String isEqual) {
+        this.isEqual = isEqual;
     }
 }

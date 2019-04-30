@@ -20,10 +20,10 @@ public class ConvergeRefundTest {
     @Excel(name = "退款请求时间",importFormat = "yyyy-MM-dd HH:mm:ss",exportFormat = "yyyy-MM-dd HH:mm:ss",width = 20)
     private Date refundApplyTime;
 
-    @Excel(name = "退款完成时间年月日",importFormat = "yyyy-MM-dd ",exportFormat = "yyyy-MM-dd",width = 20)
+    @Excel(name = "退款完成时间YMD",importFormat = "yyyy-MM-dd ",exportFormat = "yyyy-MM-dd",width = 20)
     private Date refundSuccessTime1;
 
-    @Excel(name = "退款完成时间时分秒",importFormat = "HH:mm:ss",exportFormat = " HH:mm:ss",width = 20)
+    @Excel(name = "退款完成时间HMS",importFormat = "HH:mm:ss",exportFormat = " HH:mm:ss",width = 20)
     private Date refundSuccessTime2;
 
     @Excel(name = "原商户订单号",width = 25)

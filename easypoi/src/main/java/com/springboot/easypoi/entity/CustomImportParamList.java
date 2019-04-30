@@ -86,12 +86,4 @@ public class CustomImportParamList {
     public void setConvergeRefundTestIP(ImportParams convergeRefundTestIP) {
         this.convergeRefundTestIP = convergeRefundTestIP;
     }
-
-    public static void main(String[] args) {
-
-        CustomImportParamList customImportParamList=new CustomImportParamList();
-        System.out.println(customImportParamList.getAliPayExceptionOrderIP().getTitleRows());
-        System.out.println(customImportParamList.getConvergeGatheringTestIP().getTitleRows());
-
-    }
 }

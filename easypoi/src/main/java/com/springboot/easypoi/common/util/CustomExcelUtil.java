@@ -20,7 +20,7 @@ public class CustomExcelUtil<T> extends ExcelUtiles {
 
 
     /**
-     * 根据文件路径(绝对路径)读取文件信息并改名为新名字并返回可以操作的excel
+     * 根据读取文件信息并改名为新名字并返回可以操作的excel
      * @param path
      * @param importParams 导入的参数配置
      * @param clazz 需要操作的对象的字节码文件
@@ -190,7 +190,13 @@ public class CustomExcelUtil<T> extends ExcelUtiles {
     public static void main(String[] args) {
         CustomExcels customExcels = importCustomExcels("E:\\springBoot\\easypoi\\3月份测试明细.xls", new CustomImportParamList());
 
-        exportCustomExcels(customExcels,"excel2",new CustomExportParamList());
+        List<AliPayExceptionOrder> aliPayExceptionOrderList = customExcels.getAliPayExceptionOrderList();
+        for (AliPayExceptionOrder aliPayExceptionOrder : aliPayExceptionOrderList) {
+            aliPayExceptionOrder.setIsEqual("是");
+            aliPayExceptionOrder.setIsExist("是");
+        }
+
+        exportCustomExcels(customExcels,"财务需要",new CustomExportParamList());
     }
 
 }

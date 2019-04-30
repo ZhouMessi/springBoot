@@ -21,10 +21,10 @@ public class ConvergeExceptionOrder {
     @Excel(name = "创建时间",importFormat = "yyyy-MM-dd HH:mm:ss",exportFormat = "yyyy-MM-dd HH:mm:ss",width = 20)
     private Date createTime;
 
-    @Excel(name = "支付时间1",importFormat = "yyyy-MM-dd",exportFormat = "yyyy-MM-dd ")
+    @Excel(name = "支付时间YMD",importFormat = "yyyy-MM-dd",exportFormat = "yyyy-MM-dd ")
     private Date payTimeYMD;
 
-    @Excel(name = "支付时间2",importFormat = "HH:mm:ss",exportFormat = "HH:mm:ss")
+    @Excel(name = "支付时间HMS",importFormat = "HH:mm:ss",exportFormat = "HH:mm:ss")
     private Date payTimeHMS;
 
     @Excel(name = "商户订单号",width = 20)
