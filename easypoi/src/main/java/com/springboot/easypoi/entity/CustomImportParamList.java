@@ -21,7 +21,11 @@ public class CustomImportParamList {
 
     private ImportParams convergeRefundTestIP=new ImportParams();
 
-    //初始化配置参数如果以后格式有变化只需要在这里改
+    /**
+     *自定义的导入参数初始化说明
+     * 该参数是在读取excel时生效,setTitleRow(1)的作用在于告诉程序第一行是标题,否则将读不到数据
+     * setStartSheetIndex(n)的意义在于从第n个sheet的开始读取,初始化的第一个对应的sheet为0 参数初始值为0;
+     */
     public CustomImportParamList() {
         this.aliPayExceptionOrderIP.setTitleRows(1);
 

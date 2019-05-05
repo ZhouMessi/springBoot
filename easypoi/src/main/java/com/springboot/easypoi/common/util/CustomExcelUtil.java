@@ -191,6 +191,7 @@ public class CustomExcelUtil<T> extends ExcelUtiles {
         CustomExcels customExcels = importCustomExcels("E:\\springBoot\\easypoi\\3月份测试明细.xls", new CustomImportParamList());
 
         List<AliPayExceptionOrder> aliPayExceptionOrderList = customExcels.getAliPayExceptionOrderList();
+
         for (AliPayExceptionOrder aliPayExceptionOrder : aliPayExceptionOrderList) {
             aliPayExceptionOrder.setIsEqual("是");
             aliPayExceptionOrder.setIsExist("是");
